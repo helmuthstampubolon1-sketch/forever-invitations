@@ -12,7 +12,12 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as UntukSlugRouteImport } from './routes/untuk.$slug'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminRsvpRouteImport } from './routes/admin.rsvp'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminGuestsRouteImport } from './routes/admin.guests'
+import { Route as AdminGuestbookRouteImport } from './routes/admin.guestbook'
+import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -29,42 +34,115 @@ const UntukSlugRoute = UntukSlugRouteImport.update({
   path: '/untuk/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/admin/settings',
+  path: '/admin/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRsvpRoute = AdminRsvpRouteImport.update({
+  id: '/admin/rsvp',
+  path: '/admin/rsvp',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/admin/login',
   path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminGuestsRoute = AdminGuestsRouteImport.update({
+  id: '/admin/guests',
+  path: '/admin/guests',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminGuestbookRoute = AdminGuestbookRouteImport.update({
+  id: '/admin/guestbook',
+  path: '/admin/guestbook',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin/dashboard',
+  path: '/admin/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/guestbook': typeof AdminGuestbookRoute
+  '/admin/guests': typeof AdminGuestsRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/rsvp': typeof AdminRsvpRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/untuk/$slug': typeof UntukSlugRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/guestbook': typeof AdminGuestbookRoute
+  '/admin/guests': typeof AdminGuestsRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/rsvp': typeof AdminRsvpRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/untuk/$slug': typeof UntukSlugRoute
   '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/guestbook': typeof AdminGuestbookRoute
+  '/admin/guests': typeof AdminGuestsRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/rsvp': typeof AdminRsvpRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/untuk/$slug': typeof UntukSlugRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin/login' | '/untuk/$slug' | '/admin/'
+  fullPaths:
+    | '/'
+    | '/admin/dashboard'
+    | '/admin/guestbook'
+    | '/admin/guests'
+    | '/admin/login'
+    | '/admin/rsvp'
+    | '/admin/settings'
+    | '/untuk/$slug'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin/login' | '/untuk/$slug' | '/admin'
-  id: '__root__' | '/' | '/admin/login' | '/untuk/$slug' | '/admin/'
+  to:
+    | '/'
+    | '/admin/dashboard'
+    | '/admin/guestbook'
+    | '/admin/guests'
+    | '/admin/login'
+    | '/admin/rsvp'
+    | '/admin/settings'
+    | '/untuk/$slug'
+    | '/admin'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin/dashboard'
+    | '/admin/guestbook'
+    | '/admin/guests'
+    | '/admin/login'
+    | '/admin/rsvp'
+    | '/admin/settings'
+    | '/untuk/$slug'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminGuestbookRoute: typeof AdminGuestbookRoute
+  AdminGuestsRoute: typeof AdminGuestsRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminRsvpRoute: typeof AdminRsvpRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
   UntukSlugRoute: typeof UntukSlugRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
@@ -92,6 +170,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UntukSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/admin/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/rsvp': {
+      id: '/admin/rsvp'
+      path: '/admin/rsvp'
+      fullPath: '/admin/rsvp'
+      preLoaderRoute: typeof AdminRsvpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/login': {
       id: '/admin/login'
       path: '/admin/login'
@@ -99,12 +191,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/guests': {
+      id: '/admin/guests'
+      path: '/admin/guests'
+      fullPath: '/admin/guests'
+      preLoaderRoute: typeof AdminGuestsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/guestbook': {
+      id: '/admin/guestbook'
+      path: '/admin/guestbook'
+      fullPath: '/admin/guestbook'
+      preLoaderRoute: typeof AdminGuestbookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminGuestbookRoute: AdminGuestbookRoute,
+  AdminGuestsRoute: AdminGuestsRoute,
   AdminLoginRoute: AdminLoginRoute,
+  AdminRsvpRoute: AdminRsvpRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
   UntukSlugRoute: UntukSlugRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
