@@ -1,21 +1,25 @@
 import { useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
-import { supabase } from "@/integrations/supabase/client";
+import { getSupabase } from "@/lib/supabaseClient";
 
 export function useAdminAuth() {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const { data: sub } = supabase.auth.onAuthStateChange((_event, s) => {
-      setSession(s);
-      setLoading(false);
-    });
-    supabase.auth.getSession().then(({ data }) => {
+    let unsub: (() => void) | undefined;
+    (async () => {
+      const supabase = await getSupabase();
+      const { data: sub } = supabase.auth.onAuthStateChange((_event, s) => {
+        setSession(s);
+        setLoading(false);
+      });
+      unsub = () => sub.subscription.unsubscribe();
+      const { data } = await supabase.auth.getSession();
       setSession(data.session);
       setLoading(false);
-    });
-    return () => sub.subscription.unsubscribe();
+    })();
+    return () => unsub?.();
   }, []);
 
   return { session, loading };

@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import { getSupabase } from "@/lib/supabaseClient";
 
 export function useGallery() {
   return useQuery({
     queryKey: ["gallery_photos"],
     queryFn: async () => {
+      const supabase = await getSupabase();
       const { data, error } = await supabase
         .from("gallery_photos")
         .select("*")

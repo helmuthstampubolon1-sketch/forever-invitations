@@ -1,10 +1,11 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { getSupabase } from "@/lib/supabaseClient";
 
 export function useGuestbook() {
   return useQuery({
     queryKey: ["guestbook_messages"],
     queryFn: async () => {
+      const supabase = await getSupabase();
       const { data, error } = await supabase
         .from("guestbook_messages")
         .select("*")
@@ -26,6 +27,7 @@ export function useGuestbookSubmit() {
       location?: string | null;
       message: string;
     }) => {
+      const supabase = await getSupabase();
       const { data, error } = await supabase
         .from("guestbook_messages")
         .insert(input)

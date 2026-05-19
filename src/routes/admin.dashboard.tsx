@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { AdminAuthGuard } from "@/components/AdminAuthGuard";
 import { Button } from "@/components/ui/button";
-import { supabase } from "@/integrations/supabase/client";
+import { getSupabase } from "@/lib/supabaseClient";
 
 export const Route = createFileRoute("/admin/dashboard")({
   component: () => (
@@ -20,6 +20,7 @@ function AdminDashboard() {
       <Button
         variant="outline"
         onClick={async () => {
+          const supabase = await getSupabase();
           await supabase.auth.signOut();
           navigate({ to: "/admin/login" });
         }}
