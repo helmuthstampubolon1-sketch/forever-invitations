@@ -142,3 +142,14 @@
     color: var(--color-foreground);
   }
 }
+
+/* ===== Wedding theme utilities (driven by ThemeProvider) ===== */
+.heading-font { font-family: var(--font-heading, 'Cormorant Garamond', serif); }
+.body-font { font-family: var(--font-body, 'Lato', sans-serif); }
+.text-primary-theme { color: var(--color-primary); }
+.text-accent-theme { color: var(--color-accent); }
+.text-theme { color: var(--color-text); }
+.bg-theme { background-color: var(--color-bg); }
+.bg-secondary-theme { background-color: var(--color-secondary); }
+.bg-primary-theme { background-color: var(--color-primary); }
+.border-primary-theme { border-color: var(--color-primary); }
