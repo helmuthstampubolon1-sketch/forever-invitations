@@ -11,6 +11,7 @@ import {
 import appCss from "../styles.css?url";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
+import { ToastHost } from "@/components/ui/Toast";
 
 function NotFoundComponent() {
   return (
@@ -119,6 +120,7 @@ function RootComponent() {
       <ThemeProvider>
         <Outlet />
         <Toaster />
+        <ToastHost />
       </ThemeProvider>
     </QueryClientProvider>
   );
