@@ -5,10 +5,14 @@ import { useTheme } from "@/components/ThemeProvider";
 import { OpeningOverlay } from "./OpeningOverlay";
 import { HeroSection } from "./HeroSection";
 import { MusicPlayer } from "./MusicPlayer";
-import { SectionDivider } from "./SectionDivider";
+import { CoupleSection } from "./CoupleSection";
+import { LoveStorySection } from "./LoveStorySection";
+import { EventSection } from "./EventSection";
+import { useLoveStory } from "@/hooks/useLoveStory";
 
 export function InvitationPage({ slug }: { slug?: string }) {
   const { data: setting, isLoading: settingLoading } = useWeddingSetting();
+  const { data: loveStory } = useLoveStory();
   const { data: guest, isLoading: guestLoading } = useGuest(slug);
   const { theme } = useTheme();
 
@@ -68,13 +72,9 @@ export function InvitationPage({ slug }: { slug?: string }) {
 
       <main style={{ opacity: dismissed ? 1 : 0, transition: "opacity 0.6s ease" }}>
         <HeroSection setting={setting} guest={guestData} />
-        <SectionDivider />
-        <section
-          className="text-center body-font"
-          style={{ padding: "4rem 1.5rem", opacity: 0.6 }}
-        >
-          More sections coming in the next prompts…
-        </section>
+        <CoupleSection setting={setting} />
+        <LoveStorySection items={loveStory ?? []} />
+        <EventSection setting={setting} />
       </main>
 
       <MusicPlayer setting={setting} autoplayTrigger={autoplayTick} />
