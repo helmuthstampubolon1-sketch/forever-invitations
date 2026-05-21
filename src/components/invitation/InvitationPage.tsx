@@ -8,11 +8,23 @@ import { MusicPlayer } from "./MusicPlayer";
 import { CoupleSection } from "./CoupleSection";
 import { LoveStorySection } from "./LoveStorySection";
 import { EventSection } from "./EventSection";
+import { GallerySection } from "./GallerySection";
+import { RsvpSection } from "./RsvpSection";
+import { GuestbookSection } from "./GuestbookSection";
+import { AmplopsSection } from "./AmplopsSection";
+import { ClosingSection } from "./ClosingSection";
+import { InvitationFooter } from "./InvitationFooter";
 import { useLoveStory } from "@/hooks/useLoveStory";
+import { useGallery } from "@/hooks/useGallery";
+import { useGuestbook } from "@/hooks/useGuestbook";
+import { useBankAccounts } from "@/hooks/useBankAccounts";
 
 export function InvitationPage({ slug }: { slug?: string }) {
   const { data: setting, isLoading: settingLoading } = useWeddingSetting();
   const { data: loveStory } = useLoveStory();
+  const { data: gallery } = useGallery();
+  const { data: guestbook } = useGuestbook();
+  const { data: bankAccounts } = useBankAccounts();
   const { data: guest, isLoading: guestLoading } = useGuest(slug);
   const { theme } = useTheme();
 
@@ -75,6 +87,12 @@ export function InvitationPage({ slug }: { slug?: string }) {
         <CoupleSection setting={setting} />
         <LoveStorySection items={loveStory ?? []} />
         <EventSection setting={setting} />
+        <GallerySection photos={gallery ?? []} />
+        <RsvpSection setting={setting} guest={guestData} />
+        <GuestbookSection messages={guestbook ?? []} guest={guestData} />
+        <AmplopsSection accounts={bankAccounts ?? []} />
+        <ClosingSection setting={setting} />
+        <InvitationFooter setting={setting} />
       </main>
 
       <MusicPlayer setting={setting} autoplayTrigger={autoplayTick} />
