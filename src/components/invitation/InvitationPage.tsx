@@ -12,6 +12,7 @@ import { useLoveStory } from "@/hooks/useLoveStory";
 
 export function InvitationPage({ slug }: { slug?: string }) {
   const { data: setting, isLoading: settingLoading } = useWeddingSetting();
+  const { data: loveStory } = useLoveStory();
   const { data: guest, isLoading: guestLoading } = useGuest(slug);
   const { theme } = useTheme();
 
