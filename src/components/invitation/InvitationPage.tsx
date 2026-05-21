@@ -5,7 +5,10 @@ import { useTheme } from "@/components/ThemeProvider";
 import { OpeningOverlay } from "./OpeningOverlay";
 import { HeroSection } from "./HeroSection";
 import { MusicPlayer } from "./MusicPlayer";
-import { SectionDivider } from "./SectionDivider";
+import { CoupleSection } from "./CoupleSection";
+import { LoveStorySection } from "./LoveStorySection";
+import { EventSection } from "./EventSection";
+import { useLoveStory } from "@/hooks/useLoveStory";
 
 export function InvitationPage({ slug }: { slug?: string }) {
   const { data: setting, isLoading: settingLoading } = useWeddingSetting();
