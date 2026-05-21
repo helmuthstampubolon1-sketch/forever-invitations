@@ -71,13 +71,9 @@ export function InvitationPage({ slug }: { slug?: string }) {
 
       <main style={{ opacity: dismissed ? 1 : 0, transition: "opacity 0.6s ease" }}>
         <HeroSection setting={setting} guest={guestData} />
-        <SectionDivider />
-        <section
-          className="text-center body-font"
-          style={{ padding: "4rem 1.5rem", opacity: 0.6 }}
-        >
-          More sections coming in the next prompts…
-        </section>
+        <CoupleSection setting={setting} />
+        <LoveStorySection items={loveStory ?? []} />
+        <EventSection setting={setting} />
       </main>
 
       <MusicPlayer setting={setting} autoplayTrigger={autoplayTick} />
