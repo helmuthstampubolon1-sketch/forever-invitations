@@ -1,14 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AdminAuthGuard } from "@/components/AdminAuthGuard";
-import { AdminShell } from "./admin.dashboard";
+import { AdminLayout } from "@/components/admin/AdminLayout";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { AdminCard } from "@/components/admin/AdminCard";
 
 export const Route = createFileRoute("/admin/guestbook")({
   component: () => (
     <AdminAuthGuard>
-      <AdminShell>
-        <h1 className="text-2xl font-bold mb-4">Guestbook</h1>
-        <p className="text-muted-foreground">Moderation — coming next.</p>
-      </AdminShell>
+      <AdminLayout activePage="guestbook">
+        <AdminPageHeader title="Buku Tamu" subtitle="Moderasi ucapan" />
+        <AdminCard>
+          <p style={{ color: "#6b7280" }}>Moderation — coming next.</p>
+        </AdminCard>
+      </AdminLayout>
     </AdminAuthGuard>
   ),
 });

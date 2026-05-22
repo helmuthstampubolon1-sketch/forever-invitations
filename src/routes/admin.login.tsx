@@ -1,10 +1,8 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { getSupabase } from "@/lib/supabaseClient";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const Route = createFileRoute("/admin/login")({
   component: AdminLogin,
@@ -29,40 +27,38 @@ function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-muted/30 p-4">
-      <Card className="w-full max-w-sm">
-        <CardHeader>
-          <CardTitle>Admin Login</CardTitle>
-        </CardHeader>
-        <CardContent>
+    <div style={{ minHeight: "100vh", background: "#fafafa", display: "flex", alignItems: "flex-start", justifyContent: "center" }}>
+      <div style={{ maxWidth: 380, width: "100%", margin: "0 auto", padding: "5vh 1.5rem" }}>
+        <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+          <div style={{ fontSize: "3rem" }}>💍</div>
+          <h1 style={{ fontSize: "1.5rem", fontWeight: 600, marginTop: "0.5rem" }}>Wedding Admin</h1>
+          <p style={{ fontSize: "0.85rem", color: "#6b7280" }}>Masuk untuk mengelola undangan</p>
+        </div>
+        <div style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: 12, padding: "1.5rem" }}>
           <form onSubmit={submit} className="space-y-4">
-            <div className="space-y-2">
+            <div>
               <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
+              <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
             </div>
-            <div className="space-y-2">
+            <div>
               <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
+              <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
             </div>
-            {error && <p className="text-sm text-destructive">{error}</p>}
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Signing in…" : "Sign in"}
-            </Button>
+            {error && <p style={{ fontSize: "0.8rem", color: "#991b1b" }}>{error}</p>}
+            <button
+              type="submit"
+              disabled={loading}
+              style={{
+                width: "100%", background: "#C9A96E", color: "#fff", border: "none",
+                padding: "0.7rem", borderRadius: 8, fontSize: "0.9rem", cursor: "pointer",
+                opacity: loading ? 0.7 : 1,
+              }}
+            >
+              {loading ? "Memproses…" : "Masuk"}
+            </button>
           </form>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }
