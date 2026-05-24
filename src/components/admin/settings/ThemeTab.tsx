@@ -132,7 +132,7 @@ export function ThemeTab({ setting }: { setting: WS }) {
           <div style={{ fontSize: 28, color: form.primary_color || "#000" }}>{form.bride_name} & {form.groom_name}</div>
           <div style={{ marginTop: 8, fontSize: 12, opacity: 0.7, fontFamily: `'${form.body_font || "sans-serif"}', sans-serif` }}>The Wedding Of</div>
         </div>
-        <div style={{ height: 1, background: form.accent_color, opacity: 0.4, margin: "0 32px" }} />
+        <div style={{ height: 1, background: form.accent_color || "#ccc", opacity: 0.4, margin: "0 32px" }} />
         <div style={{ padding: 16, fontSize: 12, textAlign: "center", fontFamily: `'${form.body_font || "sans-serif"}', sans-serif` }}>
           Sample Event · {form.akad_venue || "Venue"}
         </div>
