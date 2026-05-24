@@ -2,7 +2,7 @@ import type { Database } from "@/integrations/supabase/types";
 import { useSettingSaver, SaveButton, fieldStyle, labelStyle, inputCls } from "./_shared";
 
 type WS = Database["public"]["Tables"]["wedding_settings"]["Row"];
-type ThemeKey = "elegant" | "floral" | "modern-dark" | "javanese";
+type ThemeKey = "elegant" | "floral" | "modern-dark" | "javanese" | "leafitation";
 
 const THEMES: Array<{
   key: ThemeKey; label: string; subtitle: string;
@@ -33,6 +33,12 @@ const THEMES: Array<{
     previewBg: "#FDF6EC", previewText: "#7B4F1E", previewFont: "Georgia, serif",
     swatches: ["#FDF6EC", "#B8732A", "#7B4F1E", "#2C1A0E", "#4A8B5C"],
     defaults: { primary_color: "#B8732A", secondary_color: "#FDF6EC", accent_color: "#7B4F1E", text_color: "#2C1A0E", background_color: "#FEFAF4", heading_font: "Noto Serif", body_font: "Noto Sans", ornament_style: "batik" },
+  },
+  {
+    key: "leafitation", label: "Leafitation", subtitle: "Hijau Hutan · Krem Hangat · Botanical",
+    previewBg: "linear-gradient(135deg,#f0f7f2,#fdfaf5)", previewText: "#4A7C59", previewFont: "Georgia, serif",
+    swatches: ["#4A7C59", "#E8F3EC", "#C9A96E", "#2C2C2C", "#FDFAF5"],
+    defaults: { primary_color: "#4A7C59", secondary_color: "#E8F3EC", accent_color: "#C9A96E", text_color: "#2C2C2C", background_color: "#FDFAF5", heading_font: "Libre Baskerville", body_font: "Inter", ornament_style: "botanical" },
   },
 ];
 
