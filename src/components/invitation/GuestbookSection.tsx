@@ -64,6 +64,11 @@ export function GuestbookSection({
       base.background = "rgba(255,255,255,0.04)";
       base.border = "1px solid rgba(255,255,255,0.08)";
       base.borderLeft = "3px solid var(--color-primary)";
+    } else if (theme === "leafitation") {
+      base.borderRadius = 12;
+      base.background = "#f5fbf7";
+      base.borderLeft = "4px solid var(--color-primary)";
+      base.boxShadow = "0 4px 12px rgba(74,124,89,0.08)";
     }
     return base;
   };
@@ -120,7 +125,7 @@ export function GuestbookSection({
               style={{ ...inputStyle(theme), minHeight: 100, resize: "vertical" }}
             />
           </div>
-          <button type="submit" disabled={submit.isPending} style={submitStyle(submit.isPending)}>
+          <button type="submit" disabled={submit.isPending} style={submitStyle(submit.isPending, theme)}>
             {submit.isPending ? "Mengirim..." : "Kirim Ucapan"}
           </button>
         </form>

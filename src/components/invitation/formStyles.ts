@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 
-type Theme = "elegant" | "floral" | "modern-dark" | "javanese";
+type Theme = "elegant" | "floral" | "modern-dark" | "javanese" | "leafitation";
 
 export function inputStyle(theme: Theme): CSSProperties {
   const base: CSSProperties = {
@@ -24,6 +24,10 @@ export function inputStyle(theme: Theme): CSSProperties {
     base.color = "#fff";
   } else if (theme === "javanese") {
     base.border = "1px solid color-mix(in oklab, var(--color-primary) 30%, transparent)";
+  } else if (theme === "leafitation") {
+    base.borderRadius = 10;
+    base.border = "1px solid rgba(74,124,89,0.3)";
+    base.background = "#f9fcfa";
   }
   return base;
 }
@@ -40,7 +44,8 @@ export function labelStyle(theme: Theme): CSSProperties {
   };
 }
 
-export function submitStyle(disabled: boolean): CSSProperties {
+export function submitStyle(disabled: boolean, theme?: Theme): CSSProperties {
+  const isLeafitation = theme === "leafitation";
   return {
     background: "var(--color-primary)",
     color: "#fff",
@@ -53,5 +58,6 @@ export function submitStyle(disabled: boolean): CSSProperties {
     cursor: disabled ? "not-allowed" : "pointer",
     opacity: disabled ? 0.45 : 1,
     transition: "opacity 0.2s, transform 0.2s",
+    borderRadius: isLeafitation ? "999px" : undefined,
   };
 }

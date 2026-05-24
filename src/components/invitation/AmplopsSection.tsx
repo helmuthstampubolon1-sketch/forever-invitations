@@ -26,10 +26,17 @@ function BankCard({ acc }: { acc: Account }) {
           }
         : theme === "javanese"
           ? { background: "var(--color-secondary)", border: "2px solid var(--color-primary)" }
-          : {
-              background: "var(--color-secondary)",
-              border: "1px solid color-mix(in oklab, var(--color-primary) 18%, transparent)",
-            };
+          : theme === "leafitation"
+            ? {
+                background: "#f5fbf7",
+                border: "1px solid rgba(74,124,89,0.2)",
+                borderRadius: 16,
+                boxShadow: "0 8px 24px rgba(74,124,89,0.1)",
+              }
+            : {
+                background: "var(--color-secondary)",
+                border: "1px solid color-mix(in oklab, var(--color-primary) 18%, transparent)",
+              };
 
   const handleCopy = async () => {
     try {

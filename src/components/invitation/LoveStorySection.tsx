@@ -5,7 +5,7 @@ import { SectionDivider } from "./SectionDivider";
 import { useTheme } from "@/components/ThemeProvider";
 
 type Item = Database["public"]["Tables"]["love_story_items"]["Row"];
-type Theme = "elegant" | "floral" | "modern-dark" | "javanese";
+type Theme = "elegant" | "floral" | "modern-dark" | "javanese" | "leafitation";
 
 const ICON: Record<string, string> = {
   heart: "♥",
@@ -59,6 +59,9 @@ function Dot({ theme, icon }: { theme: Theme; icon: string }) {
     style.color = "var(--color-primary)";
   } else if (theme === "javanese") {
     style.borderRadius = "6px";
+  } else if (theme === "leafitation") {
+    style.boxShadow = "0 4px 16px rgba(74,124,89,0.3)";
+    style.border = "2px solid #fff";
   }
   return <div style={style}>{ICON[icon] ?? "♥"}</div>;
 }
@@ -134,15 +137,22 @@ function TimelineRow({
 }
 
 function MobileRow({ item, theme }: { item: Item; theme: Theme }) {
+  const isLeafitation = theme === "leafitation";
   return (
     <div
       style={{
         position: "relative",
         paddingLeft: 60,
         marginBottom: "2.5rem",
+        ...(isLeafitation ? {
+          background: "#f5fbf7",
+          borderRadius: 12,
+          padding: "1.25rem 1.25rem 1.25rem 60px",
+          borderLeft: "4px solid var(--color-primary)",
+        } : {}),
       }}
     >
-      <div style={{ position: "absolute", left: 0, top: 0 }}>
+      <div style={{ position: "absolute", left: isLeafitation ? 12 : 0, top: isLeafitation ? 12 : 0 }}>
         <Dot theme={theme} icon={item.icon} />
       </div>
       <div

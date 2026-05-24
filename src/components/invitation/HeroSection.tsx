@@ -5,7 +5,7 @@ import { useTheme } from "@/components/ThemeProvider";
 
 type Setting = Database["public"]["Tables"]["wedding_settings"]["Row"];
 type Guest = Database["public"]["Tables"]["guests"]["Row"];
-type Theme = "elegant" | "floral" | "modern-dark" | "javanese";
+type Theme = "elegant" | "floral" | "modern-dark" | "javanese" | "leafitation";
 
 function formatDateID(iso: string | null | undefined) {
   if (!iso) return "";
@@ -28,6 +28,8 @@ const BG: Record<Theme, string> = {
   "modern-dark": "linear-gradient(160deg, #0a0a0a 0%, #1a1a2e 100%)",
   javanese:
     "linear-gradient(160deg, #fdf6ec 0%, #fff 60%, #fdf6ec 100%)",
+  leafitation:
+    "linear-gradient(160deg, #f0f7f2 0%, #fdfaf5 55%, #eef5f1 100%)",
 };
 
 function CornerOrnament({ transform }: { transform: string }) {
@@ -87,6 +89,39 @@ function BatikCorner({ style }: { style: React.CSSProperties }) {
   );
 }
 
+function LeafOrnament({ style }: { style: React.CSSProperties }) {
+  return (
+    <svg
+      viewBox="0 0 200 200"
+      width="180"
+      height="180"
+      fill="none"
+      style={{ position: "absolute", color: "var(--color-primary)", opacity: 0.12, ...style }}
+    >
+      {/* Large leaf */}
+      <path
+        d="M100 10 C50 50 30 120 80 170 C90 140 110 110 100 10Z"
+        fill="currentColor"
+      />
+      {/* Leaf vein */}
+      <path d="M100 10 L80 170" stroke="#fff" strokeWidth="1.5" />
+      {/* Small side leaf */}
+      <path
+        d="M90 80 C60 70 40 90 70 110 C75 95 85 85 90 80Z"
+        fill="currentColor"
+        opacity="0.6"
+      />
+      {/* Stem curl */}
+      <path
+        d="M80 170 Q85 185 95 188 Q105 190 108 180"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        fill="none"
+      />
+    </svg>
+  );
+}
+
 function Background({ theme }: { theme: Theme }) {
   if (theme === "elegant") {
     return (
@@ -134,6 +169,16 @@ function Background({ theme }: { theme: Theme }) {
         </defs>
         <rect width="100%" height="100%" fill="url(#dotgrid)" />
       </svg>
+    );
+  }
+  if (theme === "leafitation") {
+    return (
+      <>
+        <LeafOrnament style={{ top: -30, left: -20, transform: "rotate(-20deg)" }} />
+        <LeafOrnament style={{ top: -30, right: -20, transform: "rotate(20deg) scaleX(-1)" }} />
+        <LeafOrnament style={{ bottom: -30, left: -20, transform: "rotate(200deg)" }} />
+        <LeafOrnament style={{ bottom: -30, right: -20, transform: "rotate(160deg) scaleX(-1)" }} />
+      </>
     );
   }
   // javanese

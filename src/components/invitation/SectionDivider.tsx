@@ -38,6 +38,20 @@ export function SectionDivider() {
     );
   }
 
+  if (theme === "leafitation") {
+    return (
+      <div className="my-10 flex items-center justify-center gap-3" style={{ color: "var(--color-primary)", opacity: 0.6 }}>
+        <svg viewBox="0 0 24 40" width="14" height="22" fill="currentColor">
+          <path d="M12 2 C6 10 5 28 10 36 C11 30 14 18 12 2Z" />
+        </svg>
+        <span style={{ fontSize: "0.6rem", letterSpacing: "0.5em" }}>✦ ✦ ✦</span>
+        <svg viewBox="0 0 24 40" width="14" height="22" fill="currentColor" style={{ transform: "scaleX(-1)" }}>
+          <path d="M12 2 C6 10 5 28 10 36 C11 30 14 18 12 2Z" />
+        </svg>
+      </div>
+    );
+  }
+
   // elegant default
   return (
     <div

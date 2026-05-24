@@ -183,7 +183,7 @@ export function RsvpSection({ setting, guest }: { setting: Setting; guest: Guest
                 style={{ ...inputStyle(theme), minHeight: 100, resize: "vertical" }}
               />
             </div>
-            <button type="submit" disabled={rsvp.isPending} style={submitStyle(rsvp.isPending)}>
+            <button type="submit" disabled={rsvp.isPending} style={submitStyle(rsvp.isPending, theme)}>
               {rsvp.isPending ? "Mengirim..." : "Kirim Konfirmasi"}
             </button>
           </form>

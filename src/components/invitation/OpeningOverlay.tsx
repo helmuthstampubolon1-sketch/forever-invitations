@@ -3,7 +3,7 @@ import type { Database } from "@/integrations/supabase/types";
 
 type Guest = Database["public"]["Tables"]["guests"]["Row"];
 type Setting = Database["public"]["Tables"]["wedding_settings"]["Row"];
-type Theme = "elegant" | "floral" | "modern-dark" | "javanese";
+type Theme = "elegant" | "floral" | "modern-dark" | "javanese" | "leafitation";
 
 const BG: Record<Theme, React.CSSProperties> = {
   elegant: {
@@ -18,6 +18,10 @@ const BG: Record<Theme, React.CSSProperties> = {
     background:
       "radial-gradient(ellipse at center, #fdf6ec 0%, #f5e6c8 100%)",
   },
+  leafitation: {
+    background:
+      "linear-gradient(160deg, #eef5f1 0%, #fdfaf5 50%, #eef5f1 100%)",
+  },
 };
 
 const RADIUS: Record<Theme, string> = {
@@ -25,6 +29,7 @@ const RADIUS: Record<Theme, string> = {
   floral: "24px",
   "modern-dark": "2px",
   javanese: "0",
+  leafitation: "999px",
 };
 
 export function OpeningOverlay({

@@ -22,6 +22,12 @@ export function ClosingSection({ setting }: { setting: Setting }) {
       />
     ) : theme === "javanese" ? (
       <div style={{ fontSize: "1.5rem", marginTop: "2rem", color: "var(--color-primary)" }}>⬡</div>
+    ) : theme === "leafitation" ? (
+      <div style={{ display: "flex", justifyContent: "center", gap: "0.5rem", marginTop: "2rem", color: "var(--color-primary)", opacity: 0.5 }}>
+        <svg viewBox="0 0 24 40" width="12" height="20" fill="currentColor"><path d="M12 2 C6 10 5 28 10 36 C11 30 14 18 12 2Z" /></svg>
+        <svg viewBox="0 0 24 40" width="16" height="26" fill="currentColor"><path d="M12 2 C6 10 5 28 10 36 C11 30 14 18 12 2Z" /></svg>
+        <svg viewBox="0 0 24 40" width="12" height="20" fill="currentColor" style={{ transform: "scaleX(-1)" }}><path d="M12 2 C6 10 5 28 10 36 C11 30 14 18 12 2Z" /></svg>
+      </div>
     ) : (
       <div style={{ fontSize: "1.5rem", marginTop: "2rem", color: "var(--color-primary)" }}>✦</div>
     );

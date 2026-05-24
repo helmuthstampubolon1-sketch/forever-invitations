@@ -4,7 +4,7 @@ import { SectionDivider } from "./SectionDivider";
 import { useTheme } from "@/components/ThemeProvider";
 
 type Setting = Database["public"]["Tables"]["wedding_settings"]["Row"];
-type Theme = "elegant" | "floral" | "modern-dark" | "javanese";
+type Theme = "elegant" | "floral" | "modern-dark" | "javanese" | "leafitation";
 
 function PhotoCircle({
   src,
@@ -15,10 +15,11 @@ function PhotoCircle({
   emoji: string;
   theme: Theme;
 }) {
+  const isLeafitation = theme === "leafitation";
   const base: React.CSSProperties = {
-    width: 160,
-    height: 160,
-    borderRadius: "9999px",
+    width: isLeafitation ? 180 : 160,
+    height: isLeafitation ? 220 : 160,
+    borderRadius: isLeafitation ? "16px" : "9999px",
     objectFit: "cover",
     border: "3px solid var(--color-primary)",
     display: "flex",
@@ -35,6 +36,10 @@ function PhotoCircle({
   } else if (theme === "javanese") {
     base.outline = "1px solid var(--color-primary)";
     base.outlineOffset = "4px";
+  } else if (theme === "leafitation") {
+    base.boxShadow = "0 8px 32px rgba(74,124,89,0.18)";
+    base.outline = "2px solid var(--color-secondary)";
+    base.outlineOffset = "3px";
   }
   if (src) {
     return <img src={src} alt="" style={base} />;

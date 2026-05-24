@@ -49,6 +49,12 @@ export function EventSection({ setting }: { setting: Setting }) {
         margin: "0 auto",
         padding: "5rem 1.5rem",
         textAlign: "center",
+        ...(theme === "leafitation" ? {
+          background: "linear-gradient(180deg, transparent, #eef7f1, transparent)",
+          maxWidth: "100%",
+          paddingLeft: "max(1.5rem, calc(50% - 430px))",
+          paddingRight: "max(1.5rem, calc(50% - 430px))",
+        } : {}),
       }}
     >
       <FadeIn>

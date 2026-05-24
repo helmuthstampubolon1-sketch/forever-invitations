@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useMemo } from "react";
 import { useWeddingSetting } from "@/hooks/useWeddingSetting";
 
-type Theme = "elegant" | "floral" | "modern-dark" | "javanese";
+type Theme = "elegant" | "floral" | "modern-dark" | "javanese" | "leafitation";
 
 const FONT_MAP: Record<Theme, { heading: string; body: string; href: string }> = {
   elegant: {
@@ -23,6 +23,11 @@ const FONT_MAP: Record<Theme, { heading: string; body: string; href: string }> =
     heading: "Noto Serif",
     body: "Noto Sans",
     href: "https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&family=Noto+Sans:wght@300;400;700&display=swap",
+  },
+  leafitation: {
+    heading: "Libre Baskerville",
+    body: "Inter",
+    href: "https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap",
   },
 };
 
@@ -60,17 +65,17 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const headingFont = setting.heading_font || FONT_MAP[theme].heading;
     const bodyFont = setting.body_font || FONT_MAP[theme].body;
     const vars: Record<string, string> = {
-      "--color-primary": setting.primary_color || "#C9A96E",
-      "--color-secondary": setting.secondary_color || "#F5F0E8",
-      "--color-accent": setting.accent_color || "#8B6914",
+      "--color-primary": setting.primary_color || (theme === "leafitation" ? "#4A7C59" : "#C9A96E"),
+      "--color-secondary": setting.secondary_color || (theme === "leafitation" ? "#E8F3EC" : "#F5F0E8"),
+      "--color-accent": setting.accent_color || (theme === "leafitation" ? "#C9A96E" : "#8B6914"),
       "--color-text": setting.text_color || "#2C2C2C",
-      "--color-bg": setting.background_color || "#FFFFFF",
+      "--color-bg": setting.background_color || (theme === "leafitation" ? "#FDFAF5" : "#FFFFFF"),
       "--font-heading": `'${headingFont}', serif`,
       "--font-body": `'${bodyFont}', sans-serif`,
     };
     Object.entries(vars).forEach(([k, v]) => root.style.setProperty(k, v));
 
-    ["theme-elegant", "theme-floral", "theme-modern-dark", "theme-javanese"].forEach((c) =>
+    ["theme-elegant", "theme-floral", "theme-modern-dark", "theme-javanese", "theme-leafitation"].forEach((c) =>
       root.classList.remove(c),
     );
     root.classList.add(themeClass);

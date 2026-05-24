@@ -2,7 +2,7 @@ import type { Database } from "@/integrations/supabase/types";
 import { useTheme } from "@/components/ThemeProvider";
 
 type Setting = Database["public"]["Tables"]["wedding_settings"]["Row"];
-type Theme = "elegant" | "floral" | "modern-dark" | "javanese";
+type Theme = "elegant" | "floral" | "modern-dark" | "javanese" | "leafitation";
 
 function formatDateID(iso: string | null | undefined) {
   if (!iso) return "";
@@ -51,6 +51,14 @@ function cardStyle(theme: Theme): React.CSSProperties {
         border: "2px solid var(--color-primary)",
         outline: "1px solid var(--color-primary)",
         outlineOffset: 3,
+      };
+    case "leafitation":
+      return {
+        background: "#f5fbf7",
+        border: "1px solid rgba(74,124,89,0.2)",
+        borderRadius: 16,
+        boxShadow: "0 8px 32px rgba(74,124,89,0.1)",
+        borderTop: "3px solid var(--color-primary)",
       };
     default:
       return {

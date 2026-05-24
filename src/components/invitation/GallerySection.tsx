@@ -14,8 +14,8 @@ export function GallerySection({ photos }: { photos: Photo[] }) {
   if (!photos || photos.length === 0) return null;
 
   const gap =
-    theme === "modern-dark" ? 2 : theme === "elegant" ? 4 : theme === "javanese" ? 6 : 8;
-  const radius = theme === "floral" ? 8 : 0;
+    theme === "modern-dark" ? 2 : theme === "elegant" ? 4 : theme === "javanese" ? 6 : theme === "leafitation" ? 10 : 8;
+  const radius = theme === "floral" ? 8 : theme === "leafitation" ? 10 : 0;
   const filter = theme === "javanese" ? "sepia(15%)" : "none";
 
   return (
