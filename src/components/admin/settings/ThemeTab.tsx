@@ -127,7 +127,7 @@ export function ThemeTab({ setting }: { setting: WS }) {
       </div>
 
       <h3 style={sect}>🔁 Preview Langsung</h3>
-      <div style={{ maxWidth: 480, margin: "0 auto", border: "1px solid #e5e7eb", borderRadius: 8, overflow: "hidden", background: form.background_color || "#fff", color: form.text_color || "#000" }}>
+      <div style={{ maxWidth: 480, margin: "0 auto", border: "1px solid #e5e7eb", borderRadius: 8, overflow: "hidden", background: form.background_color || "#fff", color: form.text_color || "#000" } as React.CSSProperties}>
         <div style={{ padding: 32, textAlign: "center", fontFamily: `'${form.heading_font || "serif"}', serif` }}>
           <div style={{ fontSize: 28, color: form.primary_color || "#000" }}>{form.bride_name} & {form.groom_name}</div>
           <div style={{ marginTop: 8, fontSize: 12, opacity: 0.7, fontFamily: `'${form.body_font || "sans-serif"}', sans-serif` }}>The Wedding Of</div>

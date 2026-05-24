@@ -20,7 +20,7 @@ export function useSettingSaver<T extends object>(initial: T | undefined) {
     setSaving(true);
     try {
       const sb = await getSupabase();
-      const { error } = await sb.from("wedding_settings").update(patch ?? form).eq("id", id);
+      const { error } = await sb.from("wedding_settings").update((patch ?? form) as never).eq("id", id);
       if (error) throw error;
       showToast("Berhasil disimpan!");
       qc.invalidateQueries({ queryKey: ["wedding_settings"] });
