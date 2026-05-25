@@ -407,6 +407,17 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_guest_by_slug: {
+        Args: { _slug: string }
+        Returns: {
+          category: Database["public"]["Enums"]["guest_category"]
+          id: string
+          is_active: boolean
+          name: string
+          opened_at: string
+          slug: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
