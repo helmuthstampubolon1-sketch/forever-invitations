@@ -423,7 +423,7 @@ export type Database = {
       ornament_style: "classic" | "botanical" | "geometric" | "batik"
       rsvp_attendance: "hadir" | "tidak_hadir" | "mungkin"
       rsvp_session: "akad" | "resepsi" | "keduanya"
-      theme_type: "elegant" | "floral" | "modern-dark" | "javanese" | "leafitation"
+      theme_type: "elegant" | "floral" | "modern-dark" | "javanese"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -558,7 +558,7 @@ export const Constants = {
       ornament_style: ["classic", "botanical", "geometric", "batik"],
       rsvp_attendance: ["hadir", "tidak_hadir", "mungkin"],
       rsvp_session: ["akad", "resepsi", "keduanya"],
-      theme_type: ["elegant", "floral", "modern-dark", "javanese", "leafitation"],
+      theme_type: ["elegant", "floral", "modern-dark", "javanese"],
     },
   },
 } as const
