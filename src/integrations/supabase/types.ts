@@ -407,6 +407,17 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_guest_by_slug: {
+        Args: { _slug: string }
+        Returns: {
+          category: Database["public"]["Enums"]["guest_category"]
+          id: string
+          is_active: boolean
+          name: string
+          opened_at: string
+          slug: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -423,7 +434,7 @@ export type Database = {
       ornament_style: "classic" | "botanical" | "geometric" | "batik"
       rsvp_attendance: "hadir" | "tidak_hadir" | "mungkin"
       rsvp_session: "akad" | "resepsi" | "keduanya"
-      theme_type: "elegant" | "floral" | "modern-dark" | "javanese" | "leafitation"
+      theme_type: "elegant" | "floral" | "modern-dark" | "javanese"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -558,7 +569,7 @@ export const Constants = {
       ornament_style: ["classic", "botanical", "geometric", "batik"],
       rsvp_attendance: ["hadir", "tidak_hadir", "mungkin"],
       rsvp_session: ["akad", "resepsi", "keduanya"],
-      theme_type: ["elegant", "floral", "modern-dark", "javanese", "leafitation"],
+      theme_type: ["elegant", "floral", "modern-dark", "javanese"],
     },
   },
 } as const
