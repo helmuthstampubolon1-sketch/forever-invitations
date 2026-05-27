@@ -40,6 +40,12 @@ const THEMES: Array<{
     swatches: ["#4A7C59", "#E8F3EC", "#C9A96E", "#2C2C2C", "#FDFAF5"],
     defaults: { primary_color: "#4A7C59", secondary_color: "#E8F3EC", accent_color: "#C9A96E", text_color: "#2C2C2C", background_color: "#FDFAF5", heading_font: "Libre Baskerville", body_font: "Inter", ornament_style: "botanical" },
   },
+  {
+    key: "bobby", label: "Bobby", subtitle: "Vintage Botanical · Hutan Klasik · Terakota",
+    previewBg: "linear-gradient(135deg,#2a332c 0%,#3d4a3f 60%,#5a4a32 100%)", previewText: "#E4DCC8", previewFont: "'Cormorant Garamond', Georgia, serif",
+    swatches: ["#2A332C", "#3D5641", "#B5814A", "#E4DCC8", "#1A1F1B"],
+    defaults: { primary_color: "#3D5641", secondary_color: "#E4DCC8", accent_color: "#B5814A", text_color: "#FFFFFF", background_color: "#2A332C", heading_font: "Cormorant Garamond", body_font: "Lato", ornament_style: "botanical" },
+  },
 ];
 
 const HEADING_FONTS = ["Cormorant Garamond", "Playfair Display", "Lora", "EB Garamond", "Bebas Neue", "Montserrat", "DM Sans", "Noto Serif", "Noto Sans"];
