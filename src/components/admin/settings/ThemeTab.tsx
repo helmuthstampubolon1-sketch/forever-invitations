@@ -2,7 +2,7 @@ import type { Database } from "@/integrations/supabase/types";
 import { useSettingSaver, SaveButton, fieldStyle, labelStyle, inputCls } from "./_shared";
 
 type WS = Database["public"]["Tables"]["wedding_settings"]["Row"];
-type ThemeKey = "elegant" | "floral" | "modern-dark" | "javanese" | "leafitation";
+type ThemeKey = "elegant" | "floral" | "modern-dark" | "javanese" | "leafitation" | "bobby";
 
 const THEMES: Array<{
   key: ThemeKey; label: string; subtitle: string;
