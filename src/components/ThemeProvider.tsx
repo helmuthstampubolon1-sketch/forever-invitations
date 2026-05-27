@@ -1,9 +1,10 @@
 import { createContext, useContext, useEffect, useMemo } from "react";
 import { useWeddingSetting } from "@/hooks/useWeddingSetting";
 
+type RawTheme = "elegant" | "floral" | "modern-dark" | "javanese" | "leafitation" | "bobby";
 type Theme = "elegant" | "floral" | "modern-dark" | "javanese" | "leafitation";
 
-const FONT_MAP: Record<Theme, { heading: string; body: string; href: string }> = {
+const FONT_MAP: Record<RawTheme, { heading: string; body: string; href: string }> = {
   elegant: {
     heading: "Cormorant Garamond",
     body: "Lato",
@@ -29,11 +30,17 @@ const FONT_MAP: Record<Theme, { heading: string; body: string; href: string }> =
     body: "Inter",
     href: "https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap",
   },
+  bobby: {
+    heading: "Cormorant Garamond",
+    body: "Lato",
+    href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lato:wght@300;400;700&display=swap",
+  },
 };
 
 type Ctx = {
   setting: ReturnType<typeof useWeddingSetting>["data"];
   theme: Theme;
+  rawTheme: RawTheme;
   themeClass: string;
 };
 
@@ -41,12 +48,13 @@ const ThemeContext = createContext<Ctx | null>(null);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const { data: setting } = useWeddingSetting();
-  const theme = (setting?.theme as Theme) ?? "elegant";
-  const themeClass = `theme-${theme}`;
+  const rawTheme = (setting?.theme as RawTheme) ?? "elegant";
+  // Bobby reuses leafitation's component-level branches; CSS overrides give it identity.
+  const theme: Theme = rawTheme === "bobby" ? "leafitation" : rawTheme;
+  const themeClass = `theme-${rawTheme}`;
 
-  // Inject Google Font link
   useEffect(() => {
-    const href = FONT_MAP[theme].href;
+    const href = FONT_MAP[rawTheme].href;
     const id = "theme-google-font";
     let link = document.getElementById(id) as HTMLLinkElement | null;
     if (!link) {
@@ -56,32 +64,42 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       document.head.appendChild(link);
     }
     if (link.href !== href) link.href = href;
-  }, [theme]);
+  }, [rawTheme]);
 
-  // Inject CSS vars + theme class
   useEffect(() => {
     if (!setting) return;
     const root = document.documentElement;
-    const headingFont = setting.heading_font || FONT_MAP[theme].heading;
-    const bodyFont = setting.body_font || FONT_MAP[theme].body;
+    const headingFont = setting.heading_font || FONT_MAP[rawTheme].heading;
+    const bodyFont = setting.body_font || FONT_MAP[rawTheme].body;
+
+    const defaults: Record<RawTheme, { primary: string; secondary: string; accent: string; text: string; bg: string }> = {
+      elegant:     { primary: "#C9A96E", secondary: "#F5F0E8", accent: "#8B6914", text: "#2C2C2C", bg: "#FFFFFF" },
+      floral:      { primary: "#E8A0B0", secondary: "#FFF5F7", accent: "#C0607A", text: "#4A3040", bg: "#FFFFFF" },
+      "modern-dark": { primary: "#E8C56E", secondary: "#1E1E2E", accent: "#C8A030", text: "#FFFFFF", bg: "#0D0D0D" },
+      javanese:    { primary: "#B8732A", secondary: "#FDF6EC", accent: "#7B4F1E", text: "#2C1A0E", bg: "#FEFAF4" },
+      leafitation: { primary: "#4A7C59", secondary: "#E8F3EC", accent: "#C9A96E", text: "#2C2C2C", bg: "#FDFAF5" },
+      bobby:       { primary: "#3D5641", secondary: "#E4DCC8", accent: "#B5814A", text: "#FFFFFF", bg: "#2A332C" },
+    };
+    const d = defaults[rawTheme];
+
     const vars: Record<string, string> = {
-      "--color-primary": setting.primary_color || (theme === "leafitation" ? "#4A7C59" : "#C9A96E"),
-      "--color-secondary": setting.secondary_color || (theme === "leafitation" ? "#E8F3EC" : "#F5F0E8"),
-      "--color-accent": setting.accent_color || (theme === "leafitation" ? "#C9A96E" : "#8B6914"),
-      "--color-text": setting.text_color || "#2C2C2C",
-      "--color-bg": setting.background_color || (theme === "leafitation" ? "#FDFAF5" : "#FFFFFF"),
+      "--color-primary": setting.primary_color || d.primary,
+      "--color-secondary": setting.secondary_color || d.secondary,
+      "--color-accent": setting.accent_color || d.accent,
+      "--color-text": setting.text_color || d.text,
+      "--color-bg": setting.background_color || d.bg,
       "--font-heading": `'${headingFont}', serif`,
       "--font-body": `'${bodyFont}', sans-serif`,
     };
     Object.entries(vars).forEach(([k, v]) => root.style.setProperty(k, v));
 
-    ["theme-elegant", "theme-floral", "theme-modern-dark", "theme-javanese", "theme-leafitation"].forEach((c) =>
+    ["theme-elegant", "theme-floral", "theme-modern-dark", "theme-javanese", "theme-leafitation", "theme-bobby"].forEach((c) =>
       root.classList.remove(c),
     );
     root.classList.add(themeClass);
-  }, [setting, theme, themeClass]);
+  }, [setting, rawTheme, themeClass]);
 
-  const value = useMemo<Ctx>(() => ({ setting, theme, themeClass }), [setting, theme, themeClass]);
+  const value = useMemo<Ctx>(() => ({ setting, theme, rawTheme, themeClass }), [setting, theme, rawTheme, themeClass]);
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }
 

@@ -440,6 +440,7 @@ export type Database = {
         | "modern-dark"
         | "javanese"
         | "leafitation"
+        | "bobby"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -580,6 +581,7 @@ export const Constants = {
         "modern-dark",
         "javanese",
         "leafitation",
+        "bobby",
       ],
     },
   },

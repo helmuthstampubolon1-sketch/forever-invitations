@@ -1,0 +1,1 @@
+ALTER TYPE public.theme_type ADD VALUE IF NOT EXISTS 'bobby';
