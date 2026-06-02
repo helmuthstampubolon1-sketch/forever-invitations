@@ -282,12 +282,15 @@ export type Database = {
           body_font: string | null
           bride_father: string | null
           bride_full_name: string | null
+          bride_instagram: string | null
           bride_mother: string | null
           bride_name: string | null
           bride_photo: string | null
+          couple_photo: string | null
           created_at: string
           groom_father: string | null
           groom_full_name: string | null
+          groom_instagram: string | null
           groom_mother: string | null
           groom_name: string | null
           groom_photo: string | null
@@ -325,12 +328,15 @@ export type Database = {
           body_font?: string | null
           bride_father?: string | null
           bride_full_name?: string | null
+          bride_instagram?: string | null
           bride_mother?: string | null
           bride_name?: string | null
           bride_photo?: string | null
+          couple_photo?: string | null
           created_at?: string
           groom_father?: string | null
           groom_full_name?: string | null
+          groom_instagram?: string | null
           groom_mother?: string | null
           groom_name?: string | null
           groom_photo?: string | null
@@ -368,12 +374,15 @@ export type Database = {
           body_font?: string | null
           bride_father?: string | null
           bride_full_name?: string | null
+          bride_instagram?: string | null
           bride_mother?: string | null
           bride_name?: string | null
           bride_photo?: string | null
+          couple_photo?: string | null
           created_at?: string
           groom_father?: string | null
           groom_full_name?: string | null
+          groom_instagram?: string | null
           groom_mother?: string | null
           groom_name?: string | null
           groom_photo?: string | null

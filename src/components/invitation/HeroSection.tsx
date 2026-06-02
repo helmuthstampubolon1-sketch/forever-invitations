@@ -190,10 +190,95 @@ function Background({ theme }: { theme: Theme }) {
   );
 }
 
+/** Hero couple photo — shown for leafitation / bobby themes */
+function CoupleHeroPhoto({ setting }: { setting: Setting }) {
+  const heroSrc = setting.couple_photo ?? setting.bride_photo ?? setting.groom_photo;
+  if (!heroSrc) return null;
+
+  return (
+    <FadeIn delay={250}>
+      <div
+        style={{
+          position: "relative",
+          width: "100%",
+          maxWidth: 480,
+          margin: "2.5rem auto 0",
+        }}
+      >
+        <img
+          src={heroSrc}
+          alt="Foto Mempelai"
+          style={{
+            width: "100%",
+            aspectRatio: "4 / 5",
+            objectFit: "cover",
+            borderRadius: 24,
+            display: "block",
+            boxShadow: "0 24px 64px rgba(0,0,0,0.18)",
+          }}
+        />
+        {/* Warm overlay tint */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            borderRadius: 24,
+            background:
+              "linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.35) 100%)",
+            pointerEvents: "none",
+          }}
+        />
+        {/* "WE FOUND LOVE" caption */}
+        {setting.opening_quote && (
+          <div
+            style={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              padding: "1.5rem 1.25rem 1.25rem",
+              textAlign: "center",
+            }}
+          >
+            <div
+              className="heading-font"
+              style={{
+                color: "#fff",
+                fontSize: "clamp(1rem, 4vw, 1.5rem)",
+                fontWeight: 400,
+                fontStyle: "italic",
+                letterSpacing: "0.04em",
+                textShadow: "0 2px 12px rgba(0,0,0,0.5)",
+              }}
+            >
+              {setting.opening_quote}
+            </div>
+            {setting.opening_quote_source && (
+              <div
+                className="uppercase"
+                style={{
+                  fontSize: "0.65rem",
+                  letterSpacing: "0.2em",
+                  color: "rgba(255,255,255,0.75)",
+                  marginTop: "0.5rem",
+                  textShadow: "0 1px 6px rgba(0,0,0,0.5)",
+                }}
+              >
+                — {setting.opening_quote_source}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </FadeIn>
+  );
+}
+
 export function HeroSection({ setting }: { setting: Setting; guest?: Guest | null }) {
-  const { theme } = useTheme();
+  const { theme, rawTheme } = useTheme();
   const dateText = formatDateID(setting.akad_datetime ?? setting.resepsi_datetime);
   const target = setting.akad_datetime ?? setting.resepsi_datetime ?? "";
+  const isLeafitationVariant = theme === "leafitation"; // includes bobby
 
   return (
     <section
@@ -206,7 +291,7 @@ export function HeroSection({ setting }: { setting: Setting; guest?: Guest | nul
       }}
     >
       <Background theme={theme} />
-      <div style={{ position: "relative", zIndex: 1, width: "100%" }}>
+      <div style={{ position: "relative", zIndex: 1, width: "100%", maxWidth: 600, margin: "0 auto" }}>
         <FadeIn delay={0}>
           <div
             className="uppercase"
@@ -220,7 +305,7 @@ export function HeroSection({ setting }: { setting: Setting; guest?: Guest | nul
           <h1
             className="heading-font"
             style={{
-              color: "var(--color-primary)",
+              color: rawTheme === "bobby" ? "#d9b886" : "var(--color-primary)",
               fontWeight: 300,
               fontSize: "clamp(3rem, 12vw, 7rem)",
               lineHeight: 1.05,
@@ -256,7 +341,11 @@ export function HeroSection({ setting }: { setting: Setting; guest?: Guest | nul
           </FadeIn>
         )}
 
-        {setting.opening_quote && (
+        {/* Couple photo — only for leafitation/bobby */}
+        {isLeafitationVariant && <CoupleHeroPhoto setting={setting} />}
+
+        {/* Opening quote — for non-leafitation themes (leafitation shows it in photo caption) */}
+        {!isLeafitationVariant && setting.opening_quote && (
           <FadeIn delay={300}>
             <blockquote
               style={{

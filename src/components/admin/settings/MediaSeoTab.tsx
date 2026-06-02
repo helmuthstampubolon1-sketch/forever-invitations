@@ -10,7 +10,7 @@ export function MediaSeoTab({ setting }: { setting: WS }) {
   const { form, setField, save, saving } = useSettingSaver<WS>(setting);
   const [uploading, setUploading] = useState<string | null>(null);
 
-  const onUpload = async (kind: "music_file" | "og_image", file: File, folder: string) => {
+  const onUpload = async (kind: "music_file" | "og_image" | "couple_photo", file: File, folder: string) => {
     setUploading(kind);
     try {
       const url = await uploadToBucket(folder, file);
@@ -25,7 +25,22 @@ export function MediaSeoTab({ setting }: { setting: WS }) {
 
   return (
     <div>
-      <h3 style={{ fontSize: 14, fontWeight: 600, marginBottom: 12 }}>🎵 Musik Latar</h3>
+      <h3 style={{ fontSize: 14, fontWeight: 600, marginBottom: 12 }}>📸 Foto Couple (Hero)</h3>
+      <div style={{ fontSize: 12, color: "#6b7280", marginBottom: 8 }}>Foto bersama mempelai — ditampilkan besar di bagian Hero (tema leafitation/bobby)</div>
+      {form.couple_photo && (
+        <div style={{ marginBottom: 8 }}>
+          <img src={form.couple_photo} alt="" style={{ maxWidth: 200, borderRadius: 12, marginBottom: 4 }} />
+          <div>
+            <button onClick={() => setField("couple_photo", null)} style={{ background: "none", border: "none", cursor: "pointer", color: "#b91c1c", fontSize: 12 }}>🗑 Hapus</button>
+          </div>
+        </div>
+      )}
+      <div style={fieldStyle}>
+        <input type="file" accept="image/*" onChange={(e) => e.target.files?.[0] && onUpload("couple_photo", e.target.files[0], "photos")} />
+        {uploading === "couple_photo" && <span style={{ fontSize: 12 }}> Mengupload…</span>}
+      </div>
+
+      <h3 style={{ fontSize: 14, fontWeight: 600, marginBottom: 12, marginTop: 24 }}>🎵 Musik Latar</h3>
       {form.music_file && (
         <div style={{ fontSize: 13, marginBottom: 8 }}>
           File: <a href={form.music_file} target="_blank" rel="noreferrer">{form.music_file.split("/").pop()}</a>{" "}

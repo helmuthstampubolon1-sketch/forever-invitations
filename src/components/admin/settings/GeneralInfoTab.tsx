@@ -55,6 +55,15 @@ export function GeneralInfoTab({ setting }: { setting: WS }) {
           <img src={form[`${prefix}_photo` as keyof WS] as string} alt="" style={{ height: 60, objectFit: "cover", borderRadius: 6, marginTop: 8 }} />
         )}
       </div>
+      <div style={fieldStyle}>
+        <label style={labelStyle}>Instagram Handle</label>
+        <input
+          className={inputCls}
+          placeholder="@username"
+          value={(form[`${prefix}_instagram` as keyof WS] as string) || ""}
+          onChange={(e) => setField(`${prefix}_instagram` as keyof WS, e.target.value as WS[keyof WS])}
+        />
+      </div>
     </div>
   );
 
