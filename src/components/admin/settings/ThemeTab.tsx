@@ -44,7 +44,7 @@ const THEMES: Array<{
     key: "bobby", label: "Bobby", subtitle: "Vintage Botanical · Hutan Klasik · Terakota",
     previewBg: "linear-gradient(135deg,#2a332c 0%,#3d4a3f 60%,#5a4a32 100%)", previewText: "#E4DCC8", previewFont: "'Cormorant Garamond', Georgia, serif",
     swatches: ["#2A332C", "#3D5641", "#B5814A", "#E4DCC8", "#1A1F1B"],
-    defaults: { primary_color: "#3D5641", secondary_color: "#E4DCC8", accent_color: "#B5814A", text_color: "#FFFFFF", background_color: "#2A332C", heading_font: "Cormorant Garamond", body_font: "Lato", ornament_style: "botanical" },
+    defaults: { primary_color: "#d9b886", secondary_color: "rgba(228, 220, 200, 0.08)", accent_color: "#b5814a", text_color: "#f4ede0", background_color: "#1f2620", heading_font: "Cormorant Garamond", body_font: "Lato", ornament_style: "botanical" },
   },
 ];
 

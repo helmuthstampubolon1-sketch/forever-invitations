@@ -158,6 +158,11 @@
 /* Bobby overrides leafitation's visual branches with a moodier, darker, painterly aesthetic. */
 
 .theme-bobby {
+  --color-primary: #d9b886 !important;
+  --color-secondary: rgba(228, 220, 200, 0.08) !important;
+  --color-accent: #b5814a !important;
+  --color-bg: #1f2620 !important;
+  --color-text: #f4ede0 !important;
   background-color: #1f2620;
 }
 

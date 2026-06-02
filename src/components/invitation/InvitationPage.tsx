@@ -74,7 +74,7 @@ export function InvitationPage({ slug }: { slug?: string }) {
         <OpeningOverlay
           guest={guestData}
           setting={setting}
-          theme={theme}
+          theme={rawTheme}
           onOpen={() => {
             setDismissed(true);
             setAutoplayTick((n) => n + 1);

@@ -3,7 +3,7 @@ import type { Database } from "@/integrations/supabase/types";
 
 type Guest = Database["public"]["Tables"]["guests"]["Row"];
 type Setting = Database["public"]["Tables"]["wedding_settings"]["Row"];
-type Theme = "elegant" | "floral" | "modern-dark" | "javanese" | "leafitation";
+type Theme = "elegant" | "floral" | "modern-dark" | "javanese" | "leafitation" | "bobby";
 
 const BG: Record<Theme, React.CSSProperties> = {
   elegant: {
@@ -22,6 +22,11 @@ const BG: Record<Theme, React.CSSProperties> = {
     background:
       "linear-gradient(160deg, #eef5f1 0%, #fdfaf5 50%, #eef5f1 100%)",
   },
+  bobby: {
+    background:
+      "radial-gradient(ellipse at 20% 30%, rgba(60,85,65,0.55) 0%, transparent 55%), radial-gradient(ellipse at 80% 70%, rgba(181,129,74,0.25) 0%, transparent 60%), radial-gradient(ellipse at 50% 100%, rgba(20,28,22,0.9) 0%, transparent 70%), linear-gradient(180deg, #2a332c 0%, #1f2620 100%)",
+    color: "#f4ede0",
+  },
 };
 
 const RADIUS: Record<Theme, string> = {
@@ -30,6 +35,7 @@ const RADIUS: Record<Theme, string> = {
   "modern-dark": "2px",
   javanese: "0",
   leafitation: "999px",
+  bobby: "999px",
 };
 
 export function OpeningOverlay({
@@ -137,10 +143,11 @@ export function OpeningOverlay({
 
       <button
         onClick={handleOpen}
-        className="uppercase cursor-pointer"
+        className="uppercase cursor-pointer hover:opacity-90 transition-opacity"
         style={{
-          background: "var(--color-primary)",
-          color: "#fff",
+          background: theme === "bobby" ? "#b5814a" : "var(--color-primary)",
+          color: theme === "bobby" ? "#1f2620" : "#fff",
+          fontWeight: theme === "bobby" ? 600 : undefined,
           padding: "0.875rem 2.5rem",
           fontSize: "0.8rem",
           letterSpacing: "0.18em",

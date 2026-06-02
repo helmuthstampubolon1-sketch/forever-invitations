@@ -78,7 +78,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       "modern-dark": { primary: "#E8C56E", secondary: "#1E1E2E", accent: "#C8A030", text: "#FFFFFF", bg: "#0D0D0D" },
       javanese:    { primary: "#B8732A", secondary: "#FDF6EC", accent: "#7B4F1E", text: "#2C1A0E", bg: "#FEFAF4" },
       leafitation: { primary: "#4A7C59", secondary: "#E8F3EC", accent: "#C9A96E", text: "#2C2C2C", bg: "#FDFAF5" },
-      bobby:       { primary: "#3D5641", secondary: "#E4DCC8", accent: "#B5814A", text: "#FFFFFF", bg: "#2A332C" },
+      bobby:       { primary: "#d9b886", secondary: "rgba(228, 220, 200, 0.08)", accent: "#b5814a", text: "#f4ede0", bg: "#1f2620" },
     };
     const d = defaults[rawTheme];
 
