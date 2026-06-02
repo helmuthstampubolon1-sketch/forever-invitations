@@ -29,6 +29,7 @@ try {
   // Test 2: InvitationPage passes rawTheme
   assertContains(
     path.join(PROJECT_ROOT, "src", "components", "invitation", "InvitationPage.tsx"),
+    'const { theme, rawTheme } = useTheme();',
     'theme={rawTheme}'
   );
 

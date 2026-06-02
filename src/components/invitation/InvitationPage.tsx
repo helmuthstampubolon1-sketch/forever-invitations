@@ -26,7 +26,7 @@ export function InvitationPage({ slug }: { slug?: string }) {
   const { data: guestbook } = useGuestbook();
   const { data: bankAccounts } = useBankAccounts();
   const { data: guest, isLoading: guestLoading } = useGuest(slug);
-  const { theme } = useTheme();
+  const { theme, rawTheme } = useTheme();
 
   const [dismissed, setDismissed] = useState(false);
   const [autoplayTick, setAutoplayTick] = useState(0);
